@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection="Product")
-public class ProductDao {
+public class ProductResourceObject {
 	
 	@Id
 	private String id;
@@ -24,7 +24,7 @@ public class ProductDao {
 	@Field("currencyCode")
 	private String currency_code;
 
-	public ProductDao(int pid) {
+	public ProductResourceObject(int pid) {
 		super();
 		this.pid = pid;
 	}

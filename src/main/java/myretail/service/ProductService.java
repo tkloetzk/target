@@ -1,14 +1,13 @@
 package myretail.service;
 
-import myretail.dao.ProductDao;
 import myretail.dao.Product;
+import myretail.dao.ProductResourceObject;
 
 public interface ProductService {
-
 	
-	Product getProductById(int id) throws Exception ;
+	Product getProductById(int id) throws Exception;
 
-	Product updateProductPrice(ProductDao product) ;
+	Product updateProductPrice(ProductResourceObject product);
 
 
 }
