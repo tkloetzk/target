@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import myretail.dao.ProductDao;
 import myretail.dao.Product;
+import myretail.dao.ProductResourceObject;
 import myretail.service.ProductDAO;
 import myretail.service.ProductService;
 
@@ -34,8 +34,8 @@ public class ProductController {
 	//Update Product's Price 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public void updateProductPriceById(@RequestBody Product productRequest,                                        
-			@PathVariable int id) {
-		ProductDao product = productDAO.resourceObject(productRequest);
+			@PathVariable int id) throws Exception {
+		ProductResourceObject product = productDAO.resourceObject(productRequest);
 		productService.updateProductPrice(product);	
 	}
 

@@ -3,13 +3,13 @@ package myretail.service;
 import org.springframework.stereotype.Component;
 
 import myretail.dao.PriceData;
-import myretail.dao.ProductDao;
 import myretail.dao.Product;
+import myretail.dao.ProductResourceObject;
 
 @Component
 public class ProductDAO {
 	
-	public Product resourceObject(ProductDao product){
+	public Product resourceObject(ProductResourceObject product){
 		
 		Product productsData = null;
 		if(product!=null){
@@ -26,9 +26,9 @@ public class ProductDAO {
 		return productsData;
 	}
 	
-	public ProductDao resourceObject(Product productData){
+	public ProductResourceObject resourceObject(Product productData){
 		
-		ProductDao productDao = new ProductDao(productData.getId());
+		ProductResourceObject productDao = new ProductResourceObject(productData.getId());
 		productDao.setCurrentPrice(productData.getPriceData().getPrice());
 		return productDao;
 	}
