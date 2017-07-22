@@ -75,9 +75,11 @@ In terminal/command prompt, run-
 ```
 $ git clone https://github.com/tkloetzk/target
 ```
+This will install the directory on your home folder
+
 
 ### 3. Install MongoDB
-If you don't have mongoDB installed, refer [here for windows](https://www.mkyong.com/mongodb/how-to-install-mongodb-on-windows/) and [here for mac](https://treehouse.github.io/installation-guides/mac/mongo-mac.html)
+If you don't have mongoDB installed, refer [here for windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/) and [here for mac](https://treehouse.github.io/installation-guides/mac/mongo-mac.html)
 
 Once installed, enter the following command in your terminal/command prompt
 ```
