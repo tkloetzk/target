@@ -73,20 +73,26 @@ $ git clone https://github.com/tkloetzk/target
 ### 3. Install MongoDB
 If you don't have mongoDB installed, refer [here for windows](https://www.mkyong.com/mongodb/how-to-install-mongodb-on-windows/) and [here for mac](https://treehouse.github.io/installation-guides/mac/mongo-mac.html)
 
-Once installed, enter the following command in your terminal
+Once installed, enter the following command in your terminal/command prompt
 ```
 mongod
 ```
-**If using windows, type this install ```net start MongoDB```
-
 This will start the Mongo server.
 
-Open up a new terminal and type the following command
+Open up a new terminal/command prompt and type the following command
 ```
 mongo
 ```
 
+Once Mongo has started, create a new database with the following command
+```
+use demo
+```
 
+And then enter the following command
+```
+db.getCollection('Product').save({ "pid": 13860428, "title": "The Big Lebowski (Blu-ray)", "price": "69.87", "currencyCode": "USD" })
+```
 
 ### 4. Build using Maven
 
