@@ -27,22 +27,27 @@ MyRetail App is configured to run as a Spring Boot application. It is configured
 
 ### To start the application
 *If you're using a mac, you can easily download everything using [homebrew](https://brew.sh)
+
 To get homebrew, simple past the following command into your terminal
 ```
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
-1. Clone the project from Git.
-*If you do not have git installed, [click here.](https://git-scm.com/downloads) If you're unsure, open your terminal/command prompt and type in 
+### 1. Clone the project from Git.
+*If you do not have git installed, [click here.](https://git-scm.com/downloads) 
+
+If you're unsure, open your terminal/command prompt and type in 
 ```
 git --version
 ```
+
 If on a mac using homebrew, you can type the following command to install git
 ```
 brew install git
 ```
 
 Once git is installed, clone the project from git
+
 In terminal/command prompt, run-
 ```
 $ git clone https://github.com/tkloetzk/target
