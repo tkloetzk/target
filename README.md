@@ -34,9 +34,7 @@ To get homebrew, simple past the following command into your terminal
 ```
 
 ### 1. Clone the project from Git.
-*If you do not have git installed, [click here.](https://git-scm.com/downloads) 
-
-If you're unsure, open your terminal/command prompt and type in 
+If you do not have git installed, [click here.](https://git-scm.com/downloads) If you're unsure, open your terminal/command prompt and type in 
 ```
 git --version
 ```
@@ -53,13 +51,20 @@ In terminal/command prompt, run-
 $ git clone https://github.com/tkloetzk/target
 ```
 
-3. Build using Maven
-If you do not have maven installed, you can install it [here.](https://maven.apache.org/download.cgi)
-If you're unsure, enter this command in your terminal/command prompt
+### 2. Build using Maven
 
+If you do not have maven installed, you can install it [here.](https://maven.apache.org/download.cgi)
+
+If you're unsure, enter this command in your terminal/command prompt
 ```
 mvn -version
 ```
+
+If on a mac using homebrew, you can type the following command to install maven
+```
+brew install maven
+```
+
 
 If you don't have mongoDB installed, refer here: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
 
