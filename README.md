@@ -4,29 +4,34 @@ myRetail is a rapidly growing company with HQ in Richmond, VA and over 200 store
 The goal for this exercise is to create an end-to-end Proof-of-Concept for a products API, which will aggregate product data from multiple sources and return it as JSON to the caller. 
 Your goal is to create a RESTful service that can retrieve product and price details by ID. The URL structure is up to you to define, but try to follow some sort of logical convention.
 Build an application that performs the following actions: 
-•	Responds to an HTTP GET request at /products/{id} and delivers product data as JSON (where {id} will be a number. 
-•	Example product IDs: 15117729, 16483589, 16696652, 16752456, 15643793) 
-•	Example response: {"id":13860428,"name":"The Big Lebowski (Blu-ray) (Widescreen)","current_price":{"value": 13.49,"currency_code":"USD"}}
-•	Performs an HTTP GET to retrieve the product name from an external API. (For this exercise the data will come from redsky.target.com, but let’s just pretend this is an internal resource hosted by myRetail) 
+*	Responds to an HTTP GET request at /products/{id} and delivers product data as JSON (where {id} will be a number. 
+*	Example product IDs: 15117729, 16483589, 16696652, 16752456, 15643793) 
+*	Example response: {"id":13860428,"name":"The Big Lebowski (Blu-ray) (Widescreen)","current_price":{"value": 13.49,"currency_code":"USD"}}
+*	Performs an HTTP GET to retrieve the product name from an external API. (For this exercise the data will come from redsky.target.com, but let’s just pretend this is an internal resource hosted by myRetail) 
 
-•	Example: http://redsky.target.com/v2/pdp/tcin/13860428?excludes=taxonomy,price,promotion,bulk_ship,rating_and_review_reviews,rating_and_review_statistics,question_answer_statistics
-•	Reads pricing information from a NoSQL data store and combines it with the product id and name from the HTTP request into a single response. 
+*	Example: http://redsky.target.com/v2/pdp/tcin/13860428?excludes=taxonomy,price,promotion,bulk_ship,rating_and_review_reviews,rating_and_review_statistics,question_answer_statistics
+*	Reads pricing information from a NoSQL data store and combines it with the product id and name from the HTTP request into a single response. 
 
 •	BONUS: Accepts an HTTP PUT request at the same path (/products/{id}), containing a JSON request body similar to the GET response, and updates the product’s price in the data store. 
 
-# Software Stack
-1 - Java 1.8
-2 - MongoDB
-3 - Spring Boot with Tomcat Embedded
-4 - JUnit
-5 - Maven
-6 - Git
+## Software Stack
+* - [Java 1.8](https://java.com/en/download/)
+* - [MongoDB 3.4.6](https://www.mongodb.com/)
+* - [Spring Boot](https://projects.spring.io/spring-boot/) with [Tomcat](https://tomcat.apache.org/) Embedded
+* - [JUnit 4](http://junit.org/junit4/)
+* - [Maven 3.5.0](https://maven.apache.org/)
+* - [Git 2.13.1](https://git-scm.com/)
 
-# MYRETAIL APP
+## MYRETAIL APP
 MyRetail App is configured to run as a Spring Boot application. It is configured to run at http://localhost:8080/products/  
 
-# To start the application
-1. Clone the project from Git
+### To start the application
+1. Clone the project from Git *If you do not have git installed, [click here](https://git-scm.com/downloads) If you're unsure, open your terminal/command prompt and type in 
+```
+git --version
+```
+
+2. Once
 In terminal/command prompt, run-
 $ git clone https://github.com/tkloetzk/target
 
