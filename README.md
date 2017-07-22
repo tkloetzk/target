@@ -15,25 +15,46 @@ Build an application that performs the following actions:
 •	BONUS: Accepts an HTTP PUT request at the same path (/products/{id}), containing a JSON request body similar to the GET response, and updates the product’s price in the data store. 
 
 ## Software Stack
-* - [Java 1.8](https://java.com/en/download/)
-* - [MongoDB 3.4.6](https://www.mongodb.com/)
-* - [Spring Boot](https://projects.spring.io/spring-boot/) with [Tomcat](https://tomcat.apache.org/) Embedded
-* - [JUnit 4](http://junit.org/junit4/)
-* - [Maven 3.5.0](https://maven.apache.org/)
-* - [Git 2.13.1](https://git-scm.com/)
+* [Java 1.8](https://java.com/en/download/)
+* [MongoDB 3.4.6](https://www.mongodb.com/)
+* [Spring Boot](https://projects.spring.io/spring-boot/) with [Tomcat](https://tomcat.apache.org/) Embedded
+* [JUnit 4](http://junit.org/junit4/)
+* [Maven 3.5.0](https://maven.apache.org/)
+* [Git 2.13.1](https://git-scm.com/)
 
 ## MYRETAIL APP
 MyRetail App is configured to run as a Spring Boot application. It is configured to run at http://localhost:8080/products/  
 
 ### To start the application
-1. Clone the project from Git *If you do not have git installed, [click here](https://git-scm.com/downloads) If you're unsure, open your terminal/command prompt and type in 
+*If you're using a mac, you can easily download everything using [homebrew](https://brew.sh)
+To get homebrew, simple past the following command into your terminal
+```
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+1. Clone the project from Git.
+*If you do not have git installed, [click here.](https://git-scm.com/downloads) If you're unsure, open your terminal/command prompt and type in 
 ```
 git --version
 ```
+If on a mac using homebrew, you can type the following command to install git
+```
+brew install git
+```
 
-2. Once
+Once git is installed, clone the project from git
 In terminal/command prompt, run-
+```
 $ git clone https://github.com/tkloetzk/target
+```
+
+3. Build using Maven
+If you do not have maven installed, you can install it [here.](https://maven.apache.org/download.cgi)
+If you're unsure, enter this command in your terminal/command prompt
+
+```
+mvn -version
+```
 
 If you don't have mongoDB installed, refer here: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
 
