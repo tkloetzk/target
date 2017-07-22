@@ -8,16 +8,16 @@ import myretail.dao.ProductResourceObject;
 
 @Component
 public class ProductDAO {
-	
-	public Product resourceObject(ProductResourceObject product){
-		
+
+	public Product resourceObject(ProductResourceObject product) {
+
 		Product productsData = null;
-		if(product!=null){
+		if (product != null) {
 			productsData = new Product();
-			
+
 			productsData.setId(product.getProductId());
 			productsData.setTitle(product.getTitle());
-			
+
 			PriceData priceData = new PriceData();
 			priceData.setCurrencyCode(product.getCurrency_code());
 			priceData.setPrice(product.getCurrentPrice());
@@ -25,9 +25,8 @@ public class ProductDAO {
 		}
 		return productsData;
 	}
-	
-	public ProductResourceObject resourceObject(Product productData){
-		
+
+	public ProductResourceObject resourceObject(Product productData) {
 		ProductResourceObject productDao = new ProductResourceObject(productData.getId());
 		productDao.setCurrentPrice(productData.getPriceData().getPrice());
 		return productDao;

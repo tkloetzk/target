@@ -6,10 +6,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 /**
- * Configure SpringBootApp and mongo repository and scan for components 
- * */
+ * Configure SpringBootApp and mongo repository and scan for components
+ */
 @SpringBootApplication
-@EnableMongoRepositories({"myretail"})
+@EnableMongoRepositories({ "myretail" })
 @ComponentScan("myretail")
 public class App {
 

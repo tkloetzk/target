@@ -48,7 +48,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Product getProductById(int id) throws Exception {
+	public Product getProductById(int id) throws JsonProcessingException, IOException {
 
 		ProductResourceObject product = productRepository.findByProductId(id);
 
@@ -63,36 +63,23 @@ public class ProductServiceImpl implements ProductService {
 		return productDAO.resourceObject(product);
 	}
 
-	private String getProductTitle(int productId) throws Exception {
+	private String getProductTitle(int productId) throws JsonProcessingException, IOException {
 		String responseBody = null;
 		ResponseEntity<String> response = null;
 		String productTitle = null;
 
 		UriComponents uriComponents = UriComponentsBuilder.fromHttpUrl(getURIPath(productId)).build();
 
-		try {
-			response = restfulTemplate.getForEntity(uriComponents.encode().toUri(), String.class);
-			responseBody = response.getBody();
+		// try {
+		response = restfulTemplate.getForEntity(uriComponents.encode().toUri(), String.class);
+		responseBody = response.getBody();
 
-			ObjectMapper mapper = new ObjectMapper();
+		ObjectMapper mapper = new ObjectMapper();
 
-			JsonNode productRootNode = mapper.readTree(responseBody);
+		JsonNode productRootNode = mapper.readTree(responseBody);
 
-			if (productRootNode != null)
-				productTitle = productRootNode.get("product").get("item").get("product_description").get("title")
-				.asText();
-
-		} catch (HttpClientErrorException ex) {
-			throw new HttpClientErrorException(HttpStatus.NOT_FOUND, ex.getLocalizedMessage());
-		} catch (JsonProcessingException e) {
-			throw new RuntimeException("Problem parsing JSON String" + responseBody, e);
-		} catch (IOException e) {
-			throw new RuntimeException("Unknown exception while trying to fetch from Database for " + productId, e);
-		}
-
-		if (!response.getStatusCode().equals(HttpStatus.OK))
-			throw new Exception(
-					"Error ocurred while retrieving product title, status code: " + response.getStatusCode().value());
+		if (productRootNode != null)
+			productTitle = productRootNode.get("product").get("item").get("product_description").get("title").asText();
 
 		return productTitle;
 	}

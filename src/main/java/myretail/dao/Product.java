@@ -3,14 +3,13 @@ package myretail.dao;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Product {
-	
-	
+
 	@JsonProperty("id")
 	private int id;
-	
+
 	@JsonProperty("name")
 	private String title;
-	
+
 	@JsonProperty("current_price")
 	private PriceData priceData;
 
@@ -22,7 +21,8 @@ public class Product {
 	}
 
 	/**
-	 * @param id the pid to set
+	 * @param id
+	 *            the pid to set
 	 */
 	public void setId(int pid) {
 		this.id = pid;
@@ -36,7 +36,8 @@ public class Product {
 	}
 
 	/**
-	 * @param title the title to set
+	 * @param title
+	 *            the title to set
 	 */
 	public void setTitle(String title) {
 		this.title = title;

@@ -7,20 +7,20 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document(collection="Product")
+@Document(collection = "Product")
 public class ProductResourceObject {
-	
+
 	@Id
 	private String id;
-	
+
 	@Indexed
 	private int pid;
-	
+
 	private String title;
 
 	@Field("price")
 	private BigDecimal currentPrice;
-	
+
 	@Field("currencyCode")
 	private String currency_code;
 
@@ -28,7 +28,7 @@ public class ProductResourceObject {
 		super();
 		this.pid = pid;
 	}
-	
+
 	public int getProductId() {
 		return pid;
 	}
