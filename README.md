@@ -39,7 +39,7 @@ Open your terminal/command prompt and enter the following command
 java -version
 ```
 
-If your java version is 1.8 then continue. Otherwise update it.
+If your java version is 1.8 then [continue](https://github.com/tkloetzk/target#2-clone-the-project-from-git). Otherwise update it.
 
 If you're on a windows, follow the instructions [here](https://techhelpkb.com/how-to-update-java-on-your-computer/).
 
@@ -70,7 +70,25 @@ In terminal/command prompt, run-
 $ git clone https://github.com/tkloetzk/target
 ```
 
-### 3. Build using Maven
+### 3. Install MongoDB
+If you don't have mongoDB installed, refer [here for windows](https://www.mkyong.com/mongodb/how-to-install-mongodb-on-windows/) and [here for mac](https://treehouse.github.io/installation-guides/mac/mongo-mac.html)
+
+Once installed, enter the following command in your terminal
+```
+mongod
+```
+**If using windows, type this install ```net start MongoDB```
+
+This will start the Mongo server.
+
+Open up a new terminal and type the following command
+```
+mongo
+```
+
+
+
+### 4. Build using Maven
 
 If you do not have maven installed, you can install it [here.](https://maven.apache.org/download.cgi)
 
@@ -89,8 +107,17 @@ Once maven is installed, build the project. (Make sure you are in the folder (ex
 mvn clean install -U
 ```
 
+### 5. Run the application
+After maven has finished building and was succesful, you'll now have a target folder in your project folder. Navigate inside this folder using terminal/command prompt
+```
+cd target
+```
+Run the following command to start the application
+```
+java -jar myretail-0.0.1-SNAPSHOT.jar
+```
 
-If you don't have mongoDB installed, refer here: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
+
 
 Open your terminal/command prompt and navigate to root level of the project (same level as the pom.xml)
 example: cd /folder/projectFolder
