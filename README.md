@@ -33,7 +33,26 @@ To get homebrew, simple past the following command into your terminal
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
-### 1. Clone the project from Git.
+### 1. Verify Java, Update if needed
+Open your terminal/command prompt and enter the following command
+```
+java -version
+```
+
+If your java version is 1.8 then [continue](https://github.com/tkloetzk/target#2-clone-the-project-from-git). Otherwise update it.
+
+If you're on a windows, follow the instructions [here](https://techhelpkb.com/how-to-update-java-on-your-computer/).
+
+If you're on a mac using homebrew, type this command
+```
+brew cask install java
+```
+
+Verify your verison again.
+```
+java -version
+```
+### 2. Clone the project from Git.
 If you do not have git installed, [click here.](https://git-scm.com/downloads) If you're unsure, open your terminal/command prompt and type in 
 ```
 git --version
@@ -51,7 +70,31 @@ In terminal/command prompt, run-
 $ git clone https://github.com/tkloetzk/target
 ```
 
-### 2. Build using Maven
+### 3. Install MongoDB
+If you don't have mongoDB installed, refer [here for windows](https://www.mkyong.com/mongodb/how-to-install-mongodb-on-windows/) and [here for mac](https://treehouse.github.io/installation-guides/mac/mongo-mac.html)
+
+Once installed, enter the following command in your terminal/command prompt
+```
+mongod
+```
+This will start the Mongo server.
+
+Open up a new terminal/command prompt and type the following command
+```
+mongo
+```
+
+Once Mongo has started, create a new database with the following command
+```
+use demo
+```
+
+And then enter the following command to add an entry in the database
+```
+db.getCollection('Product').save({ "pid": 13860428, "title": "The Big Lebowski (Blu-ray)", "price": "69.87", "currencyCode": "USD" })
+```
+
+### 4. Build Project using Maven
 
 If you do not have maven installed, you can install it [here.](https://maven.apache.org/download.cgi)
 
@@ -65,60 +108,66 @@ If on a mac using homebrew, you can type the following command to install maven
 brew install maven
 ```
 
+Once maven is installed, build the project. (Make sure you are in the folder (ex: /User/Folder/Target))
+```
+mvn clean install -U
+```
 
-If you don't have mongoDB installed, refer here: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
-
-Open your terminal/command prompt and navigate to root level of the project (same level as the pom.xml)
-example: cd /folder/projectFolder
-
-Then run maven clean install
-**Build:**
-mvn clean install
-
-To run the server, move into the target folder
-example: cd /target
-And run the jar
-**Run the server:**
+### 5. Run the application
+After maven has finished building and was succesful, you'll now have a target folder in your project folder. Navigate inside this folder using terminal/command prompt
+```
+cd target
+```
+Run the following command to start the application
+```
 java -jar myretail-0.0.1-SNAPSHOT.jar
+```
 
-I have used MongoDB as my NoSQL database to the product's information. The collection is named Product
+The application has now started.
 
-# Mongo Query to insert documents:
-db.getCollection('Product').save({ "pid": 13860428, "title": "The Big Lebowski (Blu-ray)", "price": "69.87", "currencyCode": "USD"  })
+### 6. Run the RESTful services
+Add [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en) extension for Chrome or use your favorite API Rest Client
 
-**Myretail hosts two REST services:**
+Launch Postman (or your own rest client)
 
-**1) GET /products/{productId}**
-   
-  This Rest Service aggregates price information from MongoDB and product Title from external Target API and
-  provides a JSON Response.
-  
-  **Sample:**
-  
-  **Request:** 
-  GET   http://localhost:8080/myretail/products/13860428
+1) This Rest Service aggregates price information from MongoDB and product Title from external Target API and provides a JSON Response.
+```
+  GET   http://localhost:8080/products/13860428
   Content-Type: application/json
-  
-  **Response:**
-  {
-    "id": 13860428,
-    "name": "The Big Lebowski (Blu-ray)",
-    "current_price": {
-        "value": "100.0",
-        "currency_code": "USD"
-    }
+```
+
+Response
+```
+{
+	"id": 13860428,
+	"name": "The Big Lebowski (Blu-ray)",
+	"current_price": {
+		"value": 69.87,
+		"currency_code": "USD"
+	}
 }
-  
-**2) PUT /products/{productid}**
-  
-  This Rest Service is used to update the price of an existing product in MongoDB
+```
 
-  **Sample:**
-  PUT http://localhost:8080/myretail/products/13860428
-  Content-Type: application/json
-  
-  **Request:**
-   { "id": 13860428, "name": "The Big Lebowski (Blu-ray)", "current_price": { "value": "100.00", "currency_code": "USD" } }
-   
-   **Response:**
-   200 OK
+2) This Rest Service is used to update the price of an existing product in MongoDB
+```
+PUT http://localhost:8080/products/13860428
+Content-Type: application/json
+```
+**Request:**
+```
+   { "id": 13860428, "name": "The Big Lebowski (Blu-ray)", "current_price": { "value": "11.99", "currency_code": "USD" } }
+```
+The product price has now been updated.
+
+Response
+```
+{
+	"id": 13860428,
+	"name": "The Big Lebowski (Blu-ray)",
+	"current_price": {
+		"value": 11.99,
+		"currency_code": "USD"
+	}
+}
+```
+
