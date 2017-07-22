@@ -73,22 +73,28 @@ $ git clone https://github.com/tkloetzk/target
 ### 3. Install MongoDB
 If you don't have mongoDB installed, refer [here for windows](https://www.mkyong.com/mongodb/how-to-install-mongodb-on-windows/) and [here for mac](https://treehouse.github.io/installation-guides/mac/mongo-mac.html)
 
-Once installed, enter the following command in your terminal
+Once installed, enter the following command in your terminal/command prompt
 ```
 mongod
 ```
-**If using windows, type this install ```net start MongoDB```
-
 This will start the Mongo server.
 
-Open up a new terminal and type the following command
+Open up a new terminal/command prompt and type the following command
 ```
 mongo
 ```
 
+Once Mongo has started, create a new database with the following command
+```
+use demo
+```
 
+And then enter the following command to add an entry in the database
+```
+db.getCollection('Product').save({ "pid": 13860428, "title": "The Big Lebowski (Blu-ray)", "price": "69.87", "currencyCode": "USD" })
+```
 
-### 4. Build using Maven
+### 4. Build Project using Maven
 
 If you do not have maven installed, you can install it [here.](https://maven.apache.org/download.cgi)
 
@@ -117,59 +123,51 @@ Run the following command to start the application
 java -jar myretail-0.0.1-SNAPSHOT.jar
 ```
 
+The application has now started.
 
+### 6. Run the RESTful services
+Add [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en) extension for Chrome or use your favorite API Rest Client
 
-Open your terminal/command prompt and navigate to root level of the project (same level as the pom.xml)
-example: cd /folder/projectFolder
+Launch Postman (or your own rest client)
 
-Then run maven clean install
-**Build:**
-mvn clean install
-
-To run the server, move into the target folder
-example: cd /target
-And run the jar
-**Run the server:**
-java -jar myretail-0.0.1-SNAPSHOT.jar
-
-I have used MongoDB as my NoSQL database to the product's information. The collection is named Product
-
-# Mongo Query to insert documents:
-db.getCollection('Product').save({ "pid": 13860428, "title": "The Big Lebowski (Blu-ray)", "price": "69.87", "currencyCode": "USD"  })
-
-**Myretail hosts two REST services:**
-
-**1) GET /products/{productId}**
-   
-  This Rest Service aggregates price information from MongoDB and product Title from external Target API and
-  provides a JSON Response.
-  
-  **Sample:**
-  
-  **Request:** 
-  GET   http://localhost:8080/myretail/products/13860428
+1) This Rest Service aggregates price information from MongoDB and product Title from external Target API and provides a JSON Response.
+```
+  GET   http://localhost:8080/products/13860428
   Content-Type: application/json
-  
-  **Response:**
-  {
-    "id": 13860428,
-    "name": "The Big Lebowski (Blu-ray)",
-    "current_price": {
-        "value": "100.0",
-        "currency_code": "USD"
-    }
+```
+
+Response
+```
+{
+	"id": 13860428,
+	"name": "The Big Lebowski (Blu-ray)",
+	"current_price": {
+		"value": 69.87,
+		"currency_code": "USD"
+	}
 }
-  
-**2) PUT /products/{productid}**
-  
-  This Rest Service is used to update the price of an existing product in MongoDB
+```
 
-  **Sample:**
-  PUT http://localhost:8080/myretail/products/13860428
-  Content-Type: application/json
-  
-  **Request:**
-   { "id": 13860428, "name": "The Big Lebowski (Blu-ray)", "current_price": { "value": "100.00", "currency_code": "USD" } }
-   
-   **Response:**
-   200 OK
+2) This Rest Service is used to update the price of an existing product in MongoDB
+```
+PUT http://localhost:8080/products/13860428
+Content-Type: application/json
+```
+**Request:**
+```
+   { "id": 13860428, "name": "The Big Lebowski (Blu-ray)", "current_price": { "value": "11.99", "currency_code": "USD" } }
+```
+The product price has now been updated.
+
+Response
+```
+{
+	"id": 13860428,
+	"name": "The Big Lebowski (Blu-ray)",
+	"current_price": {
+		"value": 11.99,
+		"currency_code": "USD"
+	}
+}
+```
+
