@@ -16,11 +16,17 @@ Build an application that performs the following actions:
 
 ## Software Stack
 * [Java 1.8](https://java.com/en/download/)
+	- Java was chosen because it the programming language that I know the best and that I'm very familiar with.
 * [MongoDB 3.4.6](https://www.mongodb.com/)
+	- MongoDB was chosen because it fulfills the NoSQL data store requirement. I've never used a NoSQL data store before but liked what I read about MongoDB. It's fast and good for single server applications.
 * [Spring Boot](https://projects.spring.io/spring-boot/) with [Tomcat](https://tomcat.apache.org/) Embedded
+	- I chose Spring Boot because I wanted my application to be Spring based stand alone application and also to speed up development by reducing the configuration setup steps.
 * [JUnit 4](http://junit.org/junit4/)
+	- JUnit is one of the most popular testing frameworks and promotes the test-driven development model. I also combined JUnit testing with Spring's MVC Test so I could mock the MVC infrastructure without touching the actual Mongo database.
 * [Maven 3.5.0](https://maven.apache.org/)
+	- I originally was going to use [Gradle](https://gradle.org/) for my automation build system because I've heard good things about it. However since I have never used it before I decided to go with something I know, which was maven. 
 * [Git 2.13.1](https://git-scm.com/)
+	- The main version control system that I use to maintain and track my code work. 
 
 ## MYRETAIL APP
 MyRetail App is configured to run as a Spring Boot application. It is configured to run at http://localhost:8080/products/  
