@@ -3,7 +3,6 @@ package myretail.service;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -26,28 +25,17 @@ public class ProductServiceImpl implements ProductService {
 	private static final String EXCLUDES_PATH = "?excludes=taxonomy,price,promotion,bulk_ship,rating_and_review_reviews,rating_and_review_statistics,question_answer_statistics";
 
 	@Autowired
-	ProductDAO productDAO;
+	private ProductDAO productDAO;
 
 	@Autowired
 	private ProductRepository productRepository;
 
-	@Autowired
-	RestTemplate restfulTemplate;
-
-	@Bean
-	public RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
+	RestTemplate restfulTemplate = new RestTemplate();
 
 	public String getURIPath(int productId) {
 		return HOST + productId + EXCLUDES_PATH;
 	}
-
-	public void setProductMapper(ProductDAO prdDaoMapper) {
-		this.productDAO = prdDaoMapper;
-	}
-
-	@Override
+	
 	public Product getProductById(int id) throws JsonProcessingException, IOException {
 
 		ProductResourceObject product = productRepository.findByProductId(id);
@@ -70,7 +58,6 @@ public class ProductServiceImpl implements ProductService {
 
 		UriComponents uriComponents = UriComponentsBuilder.fromHttpUrl(getURIPath(productId)).build();
 
-		// try {
 		response = restfulTemplate.getForEntity(uriComponents.encode().toUri(), String.class);
 		responseBody = response.getBody();
 
@@ -84,7 +71,6 @@ public class ProductServiceImpl implements ProductService {
 		return productTitle;
 	}
 
-	@Override
 	public Product updateProductPrice(ProductResourceObject product) {
 
 		int productId = product.getProductId();
